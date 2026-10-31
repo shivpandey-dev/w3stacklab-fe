@@ -1,26 +1,275 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Tokens and motion ported from the W3 Stack Lab design canvas. */
+@theme {
+  --color-brand: #d91f29;
+  --color-brand-dark: #b8161f;
+  --color-brand-light: #ff4d58;
+  --color-ink: #14161a;
+  --color-muted: #4a505c;
+  --color-line: #e8e8e8;
+  --color-line-strong: #d6d9df;
+  --color-surface: #f2f2f2;
+  --color-cream: #f2f2e1;
+  --color-panel: #1e2128;
+  --color-panel-line: #2b2f38;
+  --color-night-muted: #b5bac4;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-inter-tight), sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  color-scheme: light;
+}
+
+/* Base resets sit in the base layer so Tailwind utilities (text-white,
+   text-brand, text-sm...) still win over them. */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: #fff;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ::selection {
+    background: var(--color-brand);
+    color: #fff;
+  }
+
+  input,
+  select,
+  textarea {
+    font-family: inherit;
+    font-size: 16px;
+    color: var(--color-ink);
+  }
+  input:focus,
+  select:focus,
+  textarea:focus,
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 1px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ---- Nav link underline ---- */
+a.nav {
+  position: relative;
+}
+a.nav::after {
+  content: "";
+  position: absolute;
+  left: 15%;
+  bottom: 8px;
+  height: 2px;
+  width: 70%;
+  background: var(--color-brand);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+a.nav:hover::after {
+  transform: scaleX(1);
+}
+a.nav:hover {
+  color: var(--color-brand);
+}
+
+/* ---- Buttons ---- */
+a.btn-red:hover,
+button.btn-red:hover {
+  background: var(--color-brand-dark);
+}
+a.btn-ghost:hover {
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+}
+
+/* ---- Backgrounds ---- */
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(20, 22, 26, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(20, 22, 26, 0.07) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 40%, #000 30%, transparent 100%);
+  mask-image: radial-gradient(ellipse 75% 70% at 50% 40%, #000 30%, transparent 100%);
+}
+.dark-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 70% 50%, #000 20%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 80% at 70% 50%, #000 20%, transparent 100%);
+}
+.dots {
+  background-image: radial-gradient(rgba(20, 22, 26, 0.14) 1.2px, transparent 1.2px);
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 80% at 85% 20%, #000 10%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 80% at 85% 20%, #000 10%, transparent 100%);
+}
+
+/* ---- Keyframes ---- */
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(217, 31, 41, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 10px rgba(217, 31, 41, 0);
+  }
+}
+@keyframes scan {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(34px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- Motion ---- */
+.chip {
+  animation: floaty 5s ease-in-out infinite;
+}
+.dot-live {
+  animation: pulse 1.8s ease-out infinite;
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+.scanline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-brand-light), transparent);
+  animation: scan 3.6s ease-in-out infinite;
+}
+
+.lift {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 44px rgba(20, 22, 26, 0.12);
+}
+
+.svc {
+  border-top-color: var(--color-brand);
+}
+.svc:hover {
+  border-top-color: var(--color-ink) !important;
+}
+.svc .arrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+  margin-left: 6px;
+}
+.svc:hover .arrow {
+  transform: translateX(6px);
+}
+
+.zoom {
+  overflow: hidden;
+}
+.zoom > div:first-child {
+  transition: transform 0.5s ease;
+}
+.zoom:hover > div:first-child {
+  transform: scale(1.06);
+}
+
+.step-dot {
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+.step:hover .step-dot {
+  transform: scale(1.12);
+  background: var(--color-brand) !important;
+}
+
+/* Scroll reveal: each child rises into place as it enters the viewport.
+   Pure CSS, so nothing stays hidden where scroll timelines are unsupported. */
+@supports (animation-timeline: view()) {
+  .rv > * {
+    animation: rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .chip,
+  .dot-live,
+  .marquee-track,
+  .scanline,
+  .rv > * {
+    animation: none;
+  }
+  .lift,
+  .svc .arrow {
+    transition: none;
+  }
 }
