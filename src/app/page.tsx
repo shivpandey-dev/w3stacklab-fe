@@ -1,7 +1,7 @@
 import { AnnouncementBar } from "@/components/layout/announcement-bar";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
-import { About } from "@/components/sections/about";
+import { Leadership } from "@/components/sections/leadership";
 import { Blog } from "@/components/sections/blog";
 import { Contact } from "@/components/sections/contact";
 import { Hero } from "@/components/sections/hero";
@@ -27,7 +27,7 @@ export default function Home() {
         <Solutions />
         <Work />
         <Process />
-        <About />
+        <Leadership />
         <Blog />
         <Testimonials />
         <Contact />
