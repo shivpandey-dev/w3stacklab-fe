@@ -88,20 +88,6 @@ export const processSteps = [
   },
 ];
 
-export const aboutSkills = [
-  "Claude API",
-  "LangChain.js",
-  "MCP",
-  "AI agents",
-  "MEAN / MERN",
-  "Node.js",
-  "Express",
-  "TypeScript",
-  "Flutter",
-  "MySQL",
-  "PHP",
-];
-
 export const posts = [1, 2, 3].map(() => ({
   category: "[Category]",
   title: "[Blog post title goes here]",
