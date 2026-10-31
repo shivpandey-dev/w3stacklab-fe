@@ -25,6 +25,8 @@ export const metadata: Metadata = {
   description:
     "W3 Stack Lab builds AI agents and automation for businesses. Claude API, LangChain.js, MCP, plus web and mobile apps. Led by Shiv Pandey, Gurugram, India.",
   alternates: { canonical: "/" },
+  // Same file as the header logo, so one swap updates both.
+  icons: { icon: { url: "/assets/logo.svg", type: "image/svg+xml" } },
   openGraph: {
     type: "website",
     siteName: "W3 Stack Lab",
