@@ -30,6 +30,14 @@ export function Check(props: IconProps) {
   );
 }
 
+export function ChevronDown(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M6 9l6 6 6-6" />
+    </svg>
+  );
+}
+
 export function Menu(props: IconProps) {
   return (
     <svg {...base} {...props}>

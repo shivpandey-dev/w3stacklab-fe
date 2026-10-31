@@ -71,10 +71,10 @@
 }
 
 /* ---- Nav link underline ---- */
-a.nav {
+.nav {
   position: relative;
 }
-a.nav::after {
+.nav::after {
   content: "";
   position: absolute;
   left: 15%;
@@ -87,10 +87,12 @@ a.nav::after {
   transform-origin: center;
   transition: transform 0.3s ease;
 }
-a.nav:hover::after {
+.nav:hover::after,
+.nav[aria-expanded="true"]::after {
   transform: scaleX(1);
 }
-a.nav:hover {
+.nav:hover,
+.nav[aria-expanded="true"] {
   color: var(--color-brand);
 }
 
@@ -170,6 +172,24 @@ a.btn-ghost:hover {
     transform: translateX(-50%);
   }
 }
+@keyframes drawer-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 @keyframes rise {
   from {
     opacity: 0;
@@ -184,6 +204,9 @@ a.btn-ghost:hover {
 /* ---- Motion ---- */
 .chip {
   animation: floaty 5s ease-in-out infinite;
+}
+.drawer-in {
+  animation: drawer-in 0.2s cubic-bezier(0.23, 1, 0.32, 1) both;
 }
 .dot-live {
   animation: pulse 1.8s ease-out infinite;
@@ -271,5 +294,9 @@ a.btn-ghost:hover {
   .lift,
   .svc .arrow {
     transition: none;
+  }
+  /* Keep the fade, drop the movement */
+  .drawer-in {
+    animation-name: fade-in;
   }
 }

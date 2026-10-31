@@ -11,15 +11,6 @@ export const site = {
   location: "Gurugram, India",
 };
 
-export const navLinks = [
-  { label: "Services", href: "#services" },
-  { label: "Work", href: "#work" },
-  { label: "How I work", href: "#process" },
-  { label: "About", href: "#about" },
-  { label: "Blog", href: "#blog" },
-  { label: "Contact", href: "#contact" },
-];
-
 export const techStack = [
   "CLAUDE API",
   "LANGCHAIN.JS",
