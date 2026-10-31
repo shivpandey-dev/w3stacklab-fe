@@ -3,6 +3,10 @@ import type { SVGProps } from "react";
 import ArrowRightSvg from "../../../public/assets/icons/arrow-right.svg?svgr";
 import CheckSvg from "../../../public/assets/icons/check.svg?svgr";
 import ChevronDownSvg from "../../../public/assets/icons/chevron-down.svg?svgr";
+import ChevronLeftSvg from "../../../public/assets/icons/chevron-left.svg?svgr";
+import ChevronRightSvg from "../../../public/assets/icons/chevron-right.svg?svgr";
+import PauseSvg from "../../../public/assets/icons/pause.svg?svgr";
+import PlaySvg from "../../../public/assets/icons/play.svg?svgr";
 import CloseSvg from "../../../public/assets/icons/close.svg?svgr";
 import MenuSvg from "../../../public/assets/icons/menu.svg?svgr";
 import QuoteSvg from "../../../public/assets/icons/quote.svg?svgr";
@@ -24,6 +28,22 @@ export function Check(props: IconProps) {
 
 export function ChevronDown(props: IconProps) {
   return <ChevronDownSvg width={DEFAULT_SIZE} height={DEFAULT_SIZE} aria-hidden {...props} />;
+}
+
+export function ChevronLeft(props: IconProps) {
+  return <ChevronLeftSvg width={DEFAULT_SIZE} height={DEFAULT_SIZE} aria-hidden {...props} />;
+}
+
+export function ChevronRight(props: IconProps) {
+  return <ChevronRightSvg width={DEFAULT_SIZE} height={DEFAULT_SIZE} aria-hidden {...props} />;
+}
+
+export function Pause(props: IconProps) {
+  return <PauseSvg width={DEFAULT_SIZE} height={DEFAULT_SIZE} aria-hidden {...props} />;
+}
+
+export function Play(props: IconProps) {
+  return <PlaySvg width={DEFAULT_SIZE} height={DEFAULT_SIZE} aria-hidden {...props} />;
 }
 
 export function Menu(props: IconProps) {
