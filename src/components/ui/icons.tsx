@@ -1,79 +1,56 @@
+import Image from "next/image";
 import type { SVGProps } from "react";
+import ArrowRightSvg from "../../../public/assets/icons/arrow-right.svg?svgr";
+import CheckSvg from "../../../public/assets/icons/check.svg?svgr";
+import ChevronDownSvg from "../../../public/assets/icons/chevron-down.svg?svgr";
+import CloseSvg from "../../../public/assets/icons/close.svg?svgr";
+import MenuSvg from "../../../public/assets/icons/menu.svg?svgr";
+import QuoteSvg from "../../../public/assets/icons/quote.svg?svgr";
 
+// The artwork lives in public/assets/icons/*.svg. Each file uses currentColor,
+// so icons follow the surrounding text colour. Props (size, strokeWidth,
+// className...) go straight onto the <svg>.
 type IconProps = SVGProps<SVGSVGElement>;
 
-const base = {
-  width: 18,
-  height: 18,
-  viewBox: "0 0 24 24",
-  fill: "none",
-  stroke: "currentColor",
-  strokeWidth: 2.2,
-  strokeLinecap: "round",
-  strokeLinejoin: "round",
-  "aria-hidden": true,
-} as const;
+const DEFAULT_SIZE = 18;
 
 export function ArrowRight(props: IconProps) {
-  return (
-    <svg {...base} {...props}>
-      <path d="M5 12h14M13 6l6 6-6 6" />
-    </svg>
-  );
+  return <ArrowRightSvg width={DEFAULT_SIZE} height={DEFAULT_SIZE} aria-hidden {...props} />;
 }
 
 export function Check(props: IconProps) {
-  return (
-    <svg {...base} {...props}>
-      <path d="M5 12.5l4.5 4.5L19 7.5" />
-    </svg>
-  );
+  return <CheckSvg width={DEFAULT_SIZE} height={DEFAULT_SIZE} aria-hidden {...props} />;
 }
 
 export function ChevronDown(props: IconProps) {
-  return (
-    <svg {...base} {...props}>
-      <path d="M6 9l6 6 6-6" />
-    </svg>
-  );
+  return <ChevronDownSvg width={DEFAULT_SIZE} height={DEFAULT_SIZE} aria-hidden {...props} />;
 }
 
 export function Menu(props: IconProps) {
-  return (
-    <svg {...base} {...props}>
-      <path d="M4 7h16M4 12h16M4 17h16" />
-    </svg>
-  );
+  return <MenuSvg width={DEFAULT_SIZE} height={DEFAULT_SIZE} aria-hidden {...props} />;
 }
 
 export function Close(props: IconProps) {
-  return (
-    <svg {...base} {...props}>
-      <path d="M6 6l12 12M18 6L6 18" />
-    </svg>
-  );
+  return <CloseSvg width={DEFAULT_SIZE} height={DEFAULT_SIZE} aria-hidden {...props} />;
 }
 
 export function Quote(props: IconProps) {
-  return (
-    <svg {...base} fill="currentColor" stroke="none" {...props}>
-      <path d="M4 17.5C4 12 6.5 8.5 11 7l.8 1.8C9.6 9.8 8.6 11.3 8.5 13H11v6H4v-1.5zm9 0C13 12 15.5 8.5 20 7l.8 1.8c-2.2 1-3.2 2.5-3.3 4.2H20v6h-7v-1.5z" />
-    </svg>
-  );
+  return <QuoteSvg width={DEFAULT_SIZE} height={DEFAULT_SIZE} aria-hidden {...props} />;
 }
 
+/**
+ * The brand mark. Loaded from public/assets/logo.svg, so replacing that one
+ * file updates the header, mobile drawer, footer and favicon.
+ */
 export function Logo({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 32 32" className={className} aria-hidden>
-      <rect width="32" height="32" rx="8" fill="#D91F29" />
-      <path
-        d="M7 10l4 12 5-9 5 9 4-12"
-        stroke="#fff"
-        strokeWidth="2.4"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+    <Image
+      src="/assets/logo.svg"
+      alt=""
+      width={32}
+      height={32}
+      priority
+      className={className}
+    />
   );
 }
